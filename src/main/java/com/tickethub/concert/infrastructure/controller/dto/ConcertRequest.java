@@ -5,5 +5,6 @@ import lombok.NonNull;
 public record ConcertRequest (
         @NonNull String artist,
         @NonNull String description,
-        @NonNull String location ){
+        @NonNull String location,
+        @NonNull Integer numberOfTickets){
 }

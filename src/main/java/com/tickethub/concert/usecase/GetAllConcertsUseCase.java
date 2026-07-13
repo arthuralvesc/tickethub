@@ -20,7 +20,8 @@ public class GetAllConcertsUseCase {
                         concert.getId(),
                         concert.getDescription(),
                         concert.getArtist(),
-                        concert.getLocation()
+                        concert.getLocation(),
+                        concert.getNumberOfTickets()
                 )).collect(Collectors.toList());
     }
 }

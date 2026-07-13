@@ -24,13 +24,17 @@ public class Concert {
     @Column(nullable = false, length = 100)
     private String location;
 
+    @Column(nullable = false, length = 20)
+    private Integer numberOfTickets;
+
     @Column(nullable = false, name = "date_time")
     private LocalDateTime dateTime;
 
-    public Concert(String artist, String description, String location, LocalDateTime dateTime) {
+    public Concert(String artist, String description, String location, Integer numberOfTickets, LocalDateTime dateTime) {
         this.artist = artist;
         this.description = description;
         this.location = location;
+        this.numberOfTickets = numberOfTickets;
         this.dateTime = dateTime;
     }
 }
