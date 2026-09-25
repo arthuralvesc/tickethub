@@ -1,6 +1,5 @@
 package com.tickethub.concert.usecase;
 
-import com.tickethub.concert.infrastructure.controller.ConcertController;
 import com.tickethub.concert.infrastructure.controller.dto.ConcertResponse;
 import com.tickethub.concert.infrastructure.repository.ConcertRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +17,8 @@ public class GetAllConcertsUseCase {
         return concertRepository.findAll().stream()
                 .map(concert -> new ConcertResponse(
                         concert.getId(),
-                        concert.getDescription(),
                         concert.getArtist(),
+                        concert.getDescription(),
                         concert.getLocation(),
                         concert.getNumberOfTickets()
                 )).collect(Collectors.toList());

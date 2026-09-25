@@ -29,11 +29,11 @@ public class ConfirmBookingUseCase {
 
         Ticket ticket = booking.getTicket();
         Long ticketId = ticket.getId();
-        RLock lock = redissonClient.getLock("ticket_lock" + ticketId);
+        RLock lock = redissonClient.getLock("ticket_lock_" + ticketId);
         boolean acquired = false;
 
         try {
-            acquired = lock.tryLock(10, 30, TimeUnit.SECONDS);
+            acquired = lock.tryLock(1, 5, TimeUnit.SECONDS);
 
             if (!acquired) throw new LockNotAcquiredException("Could not acquire lock for ticket " + ticketId);
 

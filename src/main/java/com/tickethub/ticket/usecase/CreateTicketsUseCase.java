@@ -11,11 +11,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
-public class TicketCreationBatchUseCase {
+public class CreateTicketsUseCase {
     @PersistenceContext private final EntityManager entityManager;
 
     @Value("${spring.jpa.properties.hibernate.jdbc.batch_size:50}")
@@ -23,6 +21,7 @@ public class TicketCreationBatchUseCase {
 
     @Transactional
     @Async
+    // Executes a batch creation of the number of tickets specified in the concert creation request
     public void execute(Long concertId, Integer numberOfTickets) {
         Concert concertRef = entityManager.getReference(Concert.class, concertId);
 

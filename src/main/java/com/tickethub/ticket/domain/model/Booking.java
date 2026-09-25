@@ -1,14 +1,12 @@
 package com.tickethub.ticket.domain.model;
 
-import com.tickethub.concert.domain.Concert;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Entity
@@ -33,8 +31,8 @@ public class Booking {
     @Column(nullable = false, length = 20)
     private BookingStatus status;
 
-    @Version
-    private Long version;
+    @Column(nullable = false)
+    private LocalDateTime expiresAt;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -45,6 +43,7 @@ public class Booking {
         this.buyerId = buyerId;
         this.ticket = ticket;
         this.status = BookingStatus.PENDING;
+        this.expiresAt = LocalDateTime.now().plus(Duration.ofMinutes(15));
         this.createdAt = LocalDateTime.now();
     }
 
